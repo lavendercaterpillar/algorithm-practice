@@ -6,35 +6,25 @@
 # can "shift-by" number be bigger than the list length?
 # Empty or 1-element list?
 
-# list = [1,2,3] , 4
-# list = [3,1,2]
-# index + shiftby //length
-# 0+4=4 
-# res 4,3 = 1
+# First attempt: Time and Space complex = O(n)
+# def rotate_list(list, shift_by):
 
-def rotate_list(list, shift_by):
-    if shift_by < 0:
-        return f"Shift_by number should be positive integer!"
+    # length = len(list)
+    # result_list = [None] * length
 
-    length = len(list)
-    result_list = [None] * length
+    # for index in range(length):
+    #     new_index = (index + shift_by) % length
+    #     result_list[new_index] = list[index]
 
-    # iterate over list items and move each item by shift_by number
-    # add the new item in new location to the new result_list
-    # return the result_list
+    # return result_list  
 
-    for index in range(length):
-        new_index = (index + shift_by) % length
-        result_list[new_index] = list[index]
-
-    return result_list
-
-# Hard mode:
+# Hard mode - In place shifting (Gpt assisted!): Time Compl = O(n), Space comp = O(1)
+# The idea is slicing the list based on the shift number and then swap
 
 def rotate_list(list, shift_by):
     length = len(list)
-    shift_by = shift_by % length  # handle shifts larger than list size
-    return list[-shift_by:] + list[:-shift_by]
+    shift_by = shift_by % length  # handle shifts larger than list size; this is where the list is sliced
+    return list[-shift_by:] + list[:-shift_by]  #  = [4,5] + [1,2,3]
 
 
-print(rotate_list([1,2,3,4,5] , 4))
+print(rotate_list([1,2,3,4,5] , 2))
